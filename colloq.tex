@@ -1,0 +1,291 @@
+\documentclass{scrarticle}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{listings}
+\usepackage{hyperref}
+\newtheorem{theorem}{Теорема}
+\newtheorem{corollary}{Следствие}[theorem]
+\newtheorem{lemma}[theorem]{Лемма}
+\newcommand{\divisible}{\mathop{\raisebox{-2pt}{\vdots}}}
+\title{Коллоквиум по теории чисел.}
+\author{Титилин Александр}
+\date{}
+\begin{document}
+    \maketitle
+    \section{Делимость}
+    \[
+    a , b \in \mathbb{Z}
+    .\] 
+    \[
+    a \divisible b := \exists \alpha \in \mathbb{Z} : a = \alpha b
+    .\] 
+    \begin{theorem} \label{1}
+        \[
+        a,b,c\in \mathbb{Z}
+        .\] 
+        \[
+        a \divisible b \land b \divisible c \implies a \divisible c
+        .\] 
+    \end{theorem}
+    \begin{proof}
+        \[
+        \exists \alpha , \beta \in \mathbb{Z}
+        .\] 
+        \[
+        a = \alpha b \land b = \beta c \implies a = \alpha \beta c
+        .\] 
+    \end{proof}
+    \begin{theorem} \label{2}
+        \[
+        a,b,c \in \mathbb{Z}
+        .\] 
+        \[
+        a \divisible c \land b \divisible c \implies
+        (a \pm b) \divisible c
+        .\] 
+    \end{theorem}
+    \begin{proof}
+        \[
+        \exists \alpha , \beta \in \mathbb{Z}
+        .\] 
+        \[
+        a = \alpha c \land b = \beta c
+        .\] 
+        \[
+        a \pm b = c(\alpha \pm \beta)
+        .\] 
+    \end{proof}
+    \begin{theorem} \label{3}
+        Каждое натуральное число больше единицы делится хотя бы на одно простое число.
+    \end{theorem}
+    \begin{proof}
+        Рассуждаем по индукции. Для 2 теорема верна, так как 2 простое число. Теперь предположим, что теорема верна для всех чисел меньше $n$. Если  $n$ простое, то теорема верна, иначе $n = ab$,  $a < n$.  $a$ делится на простое число. n делится на простое по теореме \ref{1}.
+    \end{proof}
+    \begin{theorem}
+        Существует бесконечно много простых чисел.
+    \end{theorem}
+    \begin{proof}
+        Пусть простых чисел конечное число $p_1,p_2\dots p_k$ 
+        Рассмотрим число $n = p_1 p_2 p_3 \dots p_k + 1$. n не простое число и не делится ни на одно простое, получили противоречие.
+    \end{proof}
+    \begin{theorem}
+        Каждое натуральное число $> 1$ число может быть единсвенным образом записано в виде произвдения степеней простых чисел.
+    \end{theorem}
+    \begin{proof}
+        \
+    \end{proof}
+    \section{НОД}
+    Если $a \divisible c \land b \divisible c$. $c$ называется общим делителем.
+    \begin{lemma}
+        \[
+        \forall a , b \in \mathbb{Z}
+        .\] 
+        \[
+            \gcd{( a,b )} = \gcd{( a-b,b )}
+        .\] 
+    \end{lemma}
+    \begin{proof}
+        \[
+        a , b \in \mathbb{Z}
+        .\] 
+        \[
+        a \divisible c \land b \divisible c \implies a - b \divisible c
+        .\] 
+    \end{proof}
+    \begin{theorem}
+        \[
+            m \divisible n \implies \gcd{(m,n)} = n
+        .\] 
+    \end{theorem}
+    \begin{theorem}
+        \[
+            \gcd{(am,an)} = |a| \gcd{( m,n )}
+        .\] 
+    \end{theorem}
+    \section{Деление с остатком}
+    \begin{theorem}
+        \[
+            a ,b \in \mathbb{Z}, b \neq 0
+        .\] 
+        \[
+            \exists! q , r \in \mathbb{Z}, r = 0.. |b| - 1
+        .\] 
+        \[
+            a = qb + r, r = 0\dots |b| -1
+        .\] 
+    \end{theorem}
+    \begin{proof}
+       Единственность.
+       \[
+       a = b q_1 + r_1
+       .\] 
+       \[
+       a = b q_2 + r_2
+       .\] 
+       \[
+           b(q_1 - q_2) = r_1 - r_2
+       .\] 
+       \[
+       |b (q_1 - q_2) | = |r_1 - r_2|
+       .\] 
+    \end{proof}
+    \begin{theorem}
+        \[
+        a , b \in \mathbb{Z}
+        .\] 
+        \[
+            d = \gcd{a,b}
+        .\] 
+        \[
+        \exists  \alpha , \beta \in \mathbb{Z}
+        .\] 
+        \[
+        \alpha a + \beta b = d
+        .\] 
+    \end{theorem}
+    \begin{proof}
+        Рассмотрим множество $ M  = \{ax + by | x,y \in \mathbb{Z} \land ax + by > 0 \}$. $ax \divisible d \land by \divisible d \implies \forall \delta \in M ~ \delta \divisible d$. $d = \min{M}$
+    \end{proof}
+    \begin{corollary}
+        \[
+            \gcd{(a,b)} = 1 \iff \exists x,y \in \mathbb{Z} ~  ax + by = 1
+        .\] 
+    \end{corollary}
+    \begin{theorem}
+        \[
+        a , b \in \mathbb{Z}
+        .\] 
+        \[
+            ab \divisible c \land \gcd{(b,c)} = 1 \implies a \divisible c
+        .\] 
+    \end{theorem}
+    \begin{proof}
+        \[
+        ab = \alpha c
+        .\] 
+        \[
+        bx + ny = 1 \implies ( ab )x + (ay)n = a 
+        .\] 
+    \end{proof}
+    \section{Сравнение по модулю}
+    \[
+    n \in \mathbb{N}, n \neq 1
+    .\] 
+    \[
+    a , b \in \mathbb{Z}
+    .\] 
+    \[
+        a \equiv b \pmod{n} := a - b \divisible n
+    .\] 
+    \begin{theorem}
+        Если
+        \[
+            a \equiv b \pmod{n} \land c \equiv d \pmod{n}
+        .\] 
+        то
+        \begin{itemize}
+            \item $a + c \equiv b + d \pmod{n}$
+            \item  $ac \equiv bd \pmod{n}$
+        \end{itemize}
+    \begin{proof}
+            \[
+            a - b = \alpha n
+            .\] 
+            \[
+            c - d = \beta n
+            .\] 
+        \begin{itemize}
+            \item
+            \[
+                (a + c) - (b + d) = n(\alpha + \beta)
+            .\] 
+            \item
+                \[
+                    ac - bd = ac - ad - bd + ad = a(c - d) - d (a - b) = (a\beta)n - (d \alpha)n
+                .\] 
+        \end{itemize}
+    \end{proof}
+    \end{theorem}
+    \begin{theorem}
+        \begin{itemize}
+            \item $a \equiv a \pmod{n} , \forall  a\in \mathbb{Z}, n\neq 1 n \in \mathbb{N}$
+            \item $a \equiv b \pmod{n} \implies b \equiv a \pmod{n}$
+            \item $a \equiv b \pmod{n} \land b \equiv c \pmod{n} \implies a \equiv c \pmod{n}$
+        \end{itemize}
+    \end{theorem}
+        \begin{proof}
+            \begin{itemize}
+                \item 
+                    $a - a = 0 , 0 \divisible n$ 
+                \item 
+                    \[
+                    a - b = pn
+                    .\] 
+                    \[
+                    b - a = -(a - b) = -pn
+                    .\] 
+                \item
+                    \[
+                    a - b = \alpha n
+                    .\] 
+                    \[
+                    b - c = \beta n
+                    .\] 
+                    \[
+                    a - c = n(\alpha + \beta)
+                    .\] 
+            \end{itemize}
+        \end{proof}
+        \begin{theorem}
+            $\gcd{a,n} = 1 \implies \exists x ~  ax \equiv 1 \pmod{n}$
+        \end{theorem}
+        \begin{proof}
+            \[
+                \alpha a + \beta n = 1
+            .\] 
+            \[
+                \alpha a - 1 = \beta n
+            .\] 
+        \end{proof}
+        \begin{theorem}
+            $\gcd{a,n} = 1 \land a*b \equiv a * c \pmod{n} \implies b \equiv c \pmod{n}$
+        \end{theorem}
+        \section{Классы вычетов}
+        $\{b \mid b \in \mathbb{Z} , b \equiv a \pmod{n}\}$ -- класс вычетов $a$ по модулю  $n$. ($a = 0..n-1$)
+        \begin{theorem}
+            Два класса вычетов по одному модулю или совпадают или их пересечение пустое множество.
+        \end{theorem}
+        \begin{theorem}[Малая теорема Ферма]
+            Пусть $p$ простое число,  $a \in \mathbb{Z}$ $a$ не делится на  $p$, тогда
+             \[
+                 a^{p - 1} \equiv 1 \pmod{p}
+            .\] 
+        \end{theorem}
+        \begin{proof}
+            Пусть $a_k$ -- остаток от деления $ka$ на  $p$, где  $k = 1,2,\dots,p-1$. $ak$ не делится на  $p$,c среди $a_k$ нет нулей. Рассмотрим  $\forall n,m \in \{1,2,\dots,p-1\}, n \neq m$. $an - am \neq 0$. Таким образом множество $a_1,a_2,\dots,a_{p - 1}$ совпадает с множеством $\{ 1,2,\dots,p-1 \}$.
+            \[
+                a_1 a_2 a_3 \dots a_{p-1} = (p - 1)!
+            .\] 
+            \[
+                a^{p - 1} (p - 1)! = a * 2a * \dots * (p - 1)a \equiv (p - 1)! \pmod{p}
+            .\] 
+        \end{proof}
+        $\varphi(n)$ -- функция Эйлера, количество натуральных чисел меньше n взаимнопростых с ним. Если n -- простое, то  $\varphi(n) = n - 1$
+        \begin{theorem}[Эйлера]
+            a взаимно просто c $n$. Тогда  $a^{\varphi(n)} \equiv 1 \pmod{n}$
+        \end{theorem}
+        \begin{proof}
+            Рассмотрим  $A = \{k_1,k_2, \dots ,k_{\varphi(n)}\}$ -- множество всех чисел, взаимно простых с n. Теперь рассматриваем набор всех остатков от деления $\forall  k \in A$ на $a$. Нулей и одинаковых чисел в таком наборе нет. Этот набор совпадает с $A$
+             \[
+                 a^{\varphi(n)}k_1k_2\dots k_{\varphi(n)}  = ak_1 * ak_2 * \dots * a*k_{\varphi(n)} \equiv k_1 k_2 \dots k_{\varphi(n)} \equiv 1 \pmod{n}
+            .\]
+        \end{proof}
+        \begin{theorem}
+            $\gcd{m,n} = 1 \implies \varphi(mn) = \varphi(m)\varphi(n)$
+        \end{theorem}
+\end{document}
+
